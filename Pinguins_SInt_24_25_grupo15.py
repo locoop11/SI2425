@@ -61,7 +61,11 @@ class PenguinsPairs(Problem):
 
 
     def result(self, state, action):
-        """Returns the new state after applying an action."""
+        """Returns the new state after applying an action, ensuring it's a valid move."""
+
+        if action not in self.actions(state):
+            return state  # Return the same state if the action is invalid
+    
         penguin, direction = action
         directions = {'N': (-1, 0), 'S': (1, 0), 'E': (0, 1), 'O': (0, -1)}
         di, dj = directions[direction]
